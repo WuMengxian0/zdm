@@ -2,8 +2,8 @@ name: zdm_crawler
 
 on:
   #将下面两行代码取消注释
-  #schedule:
-    #- cron: "0/15 * * * *"
+  schedule:
+    - cron: "0/15 * * * *"
   workflow_dispatch:
     inputs:
       # 这个是手动触发工作流界面上的选项, 选择True时,即使未满足COMMIT_THRESHOLD提交阈值,也会生成提交记录
@@ -78,7 +78,7 @@ jobs:
         # 接收优惠信息的邮箱的授权码 为空代表不进行邮箱推送
         emailPassword: ${{secrets.emailPassword}}
         # WxPusher极简推送模式的spt 为空代表不进行Wx推送
-        spt: ${{secrets.spt}}
+        spt:
         # true:下载阶段打印出详细信息(待推送的优惠信息列表,过滤时使用的黑白词),因文本量比较大,在调通项目后可以改为false
         detail: false
       run: java -jar zdm.jar
